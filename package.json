@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/tivac/vittles/issues"
   },
-  "homepage": "https://github.com/tivac/vittles"
+  "homepage": "https://github.com/tivac/vittles",
+  "dependencies": {
+    "feedparser": "~0.17.0",
+    "async": "~0.9.0"
+  }
 }

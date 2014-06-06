@@ -1,30 +1,66 @@
 /*jssrv node:true */
 
-var http = require("http"),
-    Feed = require("feedparser"),
-    feed = new Feed();
+var requests = {
+        "http:"  : require("http"),
+        "https:" : require("https")
+    },
+    url    = require("url"),
+    
+    async  = require("async"),
+    Feed   = require("feedparser"),
+    
+    config = require("./config.json");
 
-http.get(
-    "http://www.vcdq.com/browse/rss/1/0/3_2/10_9_21_22_23_24_6_28_32_19_11_3_2/0/2011_2012_2013/0",
-    function(res) {
-        res.setEncoding("utf8");
+async.each(
+    config,
+    function(item, done) {
+        var parsed = url.parse(item.feed),
+            feed   = new Feed();
+        
+        requests[parsed.protocol].get(
+            item.feed,
+            function(res) {
+                res.setEncoding("utf8");
+                res.pipe(feed);
+            }
+        );
 
-        res.pipe(feed);
+        feed.on("error", function(error) {
+            console.log("Parser error"); // TODO: Remove Debugging
+            console.log(error); // TODO: Remove Debugging
+        });
+
+        feed.on("readable", function() {
+            var stream = this,
+                meta   = this.meta,
+                item;
+            
+            async.whilst(
+                function() {
+                    return item = stream.read();
+                },
+                function(cb) {
+                    console.log(item.title);
+                    console.log(item.link);
+                    
+                    cb();
+                },
+                function(err) {
+                    if(err) {
+                        done(err);
+                    }
+                }
+            );
+        });
+        
+        feed.on("finish", function() {
+            done();
+        });
+    },
+    function(error) {
+        console.log("All done");
+        console.log(error);
     }
 );
 
-feed.on("error", function(error) {
-    console.log("Parser error"); // TODO: Remove Debugging
-    console.log(error); // TODO: Remove Debugging
-});
-
-feed.on("readable", function() {
-    var stream = this,
-        meta   = this.meta,
-        item;
-
-    while(item = stream.read()) {
-        console.log(item);
-    }
-});
  
