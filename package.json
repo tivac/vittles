@@ -1,0 +1,23 @@
+{
+  "name": "vittles",
+  "version": "0.0.0",
+  "description": "Grab some feeds and do things with 'em",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tivac/vittles.git"
+  },
+  "keywords": [
+    "rss",
+    "feed"
+  ],
+  "author": "Pat Cavit <pcavit@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tivac/vittles/issues"
+  },
+  "homepage": "https://github.com/tivac/vittles"
+}
