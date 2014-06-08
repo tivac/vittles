@@ -1,3 +1,3 @@
 @ECHO OFF
 
-nodebug node_modules/dullard/bin/cli feeds filter-items -- --verbose
+nodebug node_modules/dullard/bin/cli feeds filter-entries parse-entries -- --verbose
