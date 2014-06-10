@@ -24,16 +24,14 @@ module.exports = function(config, done) {
                 config.log("error", error + " (" + item + ")");
             });
             
+            feed.on("end", cb);
+            
             feed.on("readable", function() {
                 var entry;
                 
                 while(entry = this.read()) {
                     config.entries.push(entry);
                 }
-            });
-            
-            feed.on("finish", function() {
-                cb();
             });
             
             config.log("info", "Requesting %s", item);
