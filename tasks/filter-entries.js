@@ -6,7 +6,7 @@ var FuzzySet = require("fuzzyset.js");
 
 module.exports = function(config) {
     var fuzzyset = new FuzzySet(
-            config.parsed.map(function(item) {
+            config.entries.map(function(item) {
                 return item.title;
             })
         ),
@@ -26,7 +26,7 @@ module.exports = function(config) {
             return a[0] > b[0];
         });
         
-        config.log("silly", "Matching results: %j", results);
+        config.log("silly", "Results for '%s': %j", show, results);
         
         if(results[0][0] < 0.5) {
             return;
@@ -34,10 +34,12 @@ module.exports = function(config) {
         
         title = results[0][1];
         
-        shows[title] = config.parsed.filter(function(entry) {
+        config.log("info", "Found entries matching '%s'", title);
+        
+        shows[title] = config.entries.filter(function(entry) {
             return entry.title === title;
         });
     });
     
-    config.choices = shows;
+    config.entries = shows;
 };

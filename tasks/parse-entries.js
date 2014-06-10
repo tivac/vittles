@@ -6,7 +6,7 @@ var scene     = require("../lib/scene-names"),
     extract   = /^File: (.*) Thread:/;
 
 module.exports = function(config) {
-    config.parsed = config.entries
+    config.entries = config.entries
         .map(function(entry) {
             var title = entry.title.trim(),
                 details;
@@ -14,6 +14,8 @@ module.exports = function(config) {
             if(title.search(extract) > -1) {
                 title = title.match(extract)[1];
             }
+            
+            config.log("silly", "Attempting to parse '%s'", title);
             
             details = scene.parse(title);
             
