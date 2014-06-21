@@ -1,5 +1,3 @@
-/*jshint node:true */
-
 "use strict";
 
 var scene     = require("../lib/scene-names"),
@@ -10,7 +8,7 @@ module.exports = function(config) {
         .map(function(entry) {
             var title = entry.title.trim(),
                 details;
-        
+            
             if(title.search(extract) > -1) {
                 title = title.match(extract)[1];
             }
