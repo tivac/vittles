@@ -1,19 +1,19 @@
-[
-    {
-        "source"  : "Louie.S04E11.720p.HDTV.X264-DIMENSION.mkv",
-        "details" : {
-            "title"   : "Louie",
-            "season"  : 4,
-            "episode" : 11,
-            "quality" : "720p"
-        }
+{
+    "Louie.S04E11.720p.HDTV.X264-DIMENSION.mkv" : {
+        "title"   : "Louie",
+        "season"  : 4,
+        "episode" : 11,
+        "quality" : "720p"
     },
-    {
-        "source"  : "[gg]_Shingeki_no_Kyojin_-_04_[36EF8BD0].mkv",
-        "details" : {
-            "title"   : "Shingeki no Kyojin",
-            "season"  : 1,
-            "episode" : 4
-        }
-    }    
-]
+    "[gg]_Shingeki_no_Kyojin_-_04_[36EF8BD0].mkv" : {
+        "title"   : "Shingeki no Kyojin",
+        "season"  : 1,
+        "episode" : 4
+    },
+    "Defiance.S02E01.The.Opposite.Of.Hallelujah.1080p.WEB-DL.DD5.1.H.264-ECI.mkv" : {
+        "title"   : "Defiance",
+        "season"  : 2,
+        "episode" : 1,
+        "quality" : "1080p"
+    }
+}
