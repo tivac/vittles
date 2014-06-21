@@ -4,7 +4,7 @@
   "description": "Grab some feeds and do things with 'em",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "istanbul test ./node_modules/mocha/bin/_mocha"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,8 @@
     "xregexp": "^2.0.0"
   },
   "devDependencies": {
-    "dullard": "^0.4.5"
+    "dullard": "^0.4.5",
+    "istanbul": "^0.2.11",
+    "mocha": "^1.20.1"
   }
 }

@@ -1,0 +1,19 @@
+[
+    {
+        "source"  : "Louie.S04E11.720p.HDTV.X264-DIMENSION.mkv",
+        "details" : {
+            "title"   : "Louie",
+            "season"  : 4,
+            "episode" : 11,
+            "quality" : "720p"
+        }
+    },
+    {
+        "source"  : "[gg]_Shingeki_no_Kyojin_-_04_[36EF8BD0].mkv",
+        "details" : {
+            "title"   : "Shingeki no Kyojin",
+            "season"  : 1,
+            "episode" : 4
+        }
+    }    
+]
