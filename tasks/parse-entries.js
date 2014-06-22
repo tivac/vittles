@@ -1,7 +1,6 @@
 "use strict";
 
-var scene     = require("../lib/scene-names"),
-    extract   = /^File: (.*) Thread:/;
+var scene = require("../lib/scene-names");
 
 module.exports = function(config) {
     config.entries = config.entries
@@ -9,10 +8,10 @@ module.exports = function(config) {
             var title = entry.title.trim(),
                 details;
             
-            if(title.search(extract) > -1) {
-                title = title.match(extract)[1];
+            if(entry.feed.extract) {
+                title = title.match(entry.feed.extract)[1];
             }
-            
+
             config.log("silly", "Attempting to parse '%s'", title);
             
             details = scene.parse(title);

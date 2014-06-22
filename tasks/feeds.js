@@ -2,7 +2,7 @@
 
 "use strict";
 
-var url   = require("url"),
+var parse = require("url").parse,
     async = require("async"),
     Feed  = require("feedparser"),
 
@@ -17,11 +17,12 @@ module.exports = function(config, done) {
     async.each(
         config.feeds,
         function(item, cb) {
-            var parsed = url.parse(item),
+            var url    = item.url || item,
+                parsed = parse(url),
                 feed   = new Feed();
             
             feed.on("error", function(error) {
-                config.log("error", error + " (" + item + ")");
+                config.log("error", error + " (" + url + ")");
             });
             
             feed.on("end", cb);
@@ -30,18 +31,20 @@ module.exports = function(config, done) {
                 var entry;
                 
                 while(entry = this.read()) {
+                    entry.feed = item;
+
                     config.entries.push(entry);
                 }
             });
             
-            config.log("info", "Requesting %s", item);
+            config.log("info", "Requesting %s", url);
             
             requests[parsed.protocol].get(
-                item,
+                url,
                 function(res) {
                     res.setEncoding("utf8");
                     
-                    config.log("verbose", "Parsing %s", item);
+                    config.log("verbose", "Parsing %s", url);
                     
                     res.pipe(feed);
                 }
