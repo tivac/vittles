@@ -15,5 +15,22 @@
         "season"  : 2,
         "episode" : 1,
         "quality" : "1080p"
+    },
+    "Real.Time.with.Bill.Maher.Overtime.2014.06.20.WEB-DL.mp4" : {
+        "title"   : "Real Time with Bill Maher Overtime",
+        "airdate" : {
+            "year"  : 2014,
+            "month" : 6,
+            "day"   : 20
+        }
+    },
+    "Jeopardy.2014.06.23.720p.HDTV.x264.AAC2.0-NTb" : {
+        "title"   : "Jeopardy",
+        "quality" : "720p",
+        "airdate" : {
+            "year"  : 2014,
+            "month" : 6,
+            "day"   : 23
+        }
     }
 }

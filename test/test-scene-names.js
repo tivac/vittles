@@ -3,11 +3,13 @@ var assert = require("assert"),
 
 describe("Scene Name Parser", function() {
     describe("Bugs", function() {
-        require("./broken").forEach(function(entry) {
-            it("should parse \"" + entry.source + "\"", function() {
-                var details = parse(entry.source);
+        var names = require("./specimens/names");
 
-                assert.deepEqual(details, entry.details);
+        Object.keys(names).forEach(function(name) {
+            it("should parse \"" + name + "\"", function() {
+                var details = parse(name);
+
+                assert.deepEqual(details, names[name]);
             });
         });
     });
