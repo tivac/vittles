@@ -5,17 +5,20 @@
         "episode" : 11,
         "quality" : "720p"
     },
+    
     "[gg]_Shingeki_no_Kyojin_-_04_[36EF8BD0].mkv" : {
         "title"   : "Shingeki no Kyojin",
         "season"  : 1,
         "episode" : 4
     },
+    
     "Defiance.S02E01.The.Opposite.Of.Hallelujah.1080p.WEB-DL.DD5.1.H.264-ECI.mkv" : {
         "title"   : "Defiance",
         "season"  : 2,
         "episode" : 1,
         "quality" : "1080p"
     },
+
     "Real.Time.with.Bill.Maher.Overtime.2014.06.20.WEB-DL.mp4" : {
         "title"   : "Real Time with Bill Maher Overtime",
         "airdate" : {
@@ -24,6 +27,7 @@
             "day"   : 20
         }
     },
+    
     "Jeopardy.2014.06.23.720p.HDTV.x264.AAC2.0-NTb" : {
         "title"   : "Jeopardy",
         "quality" : "720p",
@@ -32,5 +36,12 @@
             "month" : 6,
             "day"   : 23
         }
+    },
+    
+    "so.you.think.you.can.dance.us.s11e04.720p.hdtv.x264-2hd.mkv" : {
+        "title"   : "so you think you can dance us",
+        "season"  : 11,
+        "episode" : 4,
+        "quality" : "720p"
     }
 }
