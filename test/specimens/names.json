@@ -43,5 +43,12 @@
         "season"  : 11,
         "episode" : 4,
         "quality" : "720p"
+    },
+    
+    "24.S09E09.720p.HDTV.X264-DIMENSION.mkv" : {
+        "title"   : "24",
+        "season"  : 9,
+        "episode" : 9,
+        "quality" : "720p"
     }
 }
