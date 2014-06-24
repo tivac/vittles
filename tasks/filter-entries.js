@@ -41,5 +41,7 @@ module.exports = function(config) {
         });
     });
     
+    // TODO: remove any duplicate shows
+    
     config.entries = shows;
 };
