@@ -1,6 +1,12 @@
 "use strict";
 
-var async = require("async");
+var fs     = require("fs"),
+    path   = require("path"),
+    
+    async  = require("async"),
+    needle = require("needle"),
+    
+    _utils = require("../lib/utils");
 
 module.exports = function downloadEntries(config, done) {
     var files = [],
@@ -13,9 +19,9 @@ module.exports = function downloadEntries(config, done) {
             if(details.source.feed.extract) {
                 title = title.match(details.source.feed.extract)[1];
             }
-
+            
             files.push({
-                url  : details.source.link,
+                url  : _utils.addAuth(details.source.link, details.source.feed),
                 name : title + ".torrent"
             });
         });
@@ -23,10 +29,16 @@ module.exports = function downloadEntries(config, done) {
 
     async.each(
         files,
-        function(file, cb) {
-            console.log(file); // TODO: Remove Debugging
-            //TODO: download & save
-            cb();
+        function(file, next) {
+            var dest = path.join("./", file.name),
+                out  = fs.createWriteStream(dest);
+            
+            out.on("error",  next);
+            out.on("finish", next);
+            
+            config.log("info", "Downloading %s to \"%s\"", file.url, dest);
+            
+            needle.get(file.url).pipe(out);
         },
         function(errors) {
             done(errors);

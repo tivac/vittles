@@ -24,6 +24,7 @@
     "async": "~0.9.0",
     "feedparser": "~0.17.0",
     "fuzzyset.js": "0.0.1",
+    "needle": "^0.7.2",
     "xregexp": "^2.0.0"
   },
   "devDependencies": {

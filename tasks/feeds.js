@@ -2,30 +2,28 @@
 
 "use strict";
 
-var parse = require("url").parse,
-    async = require("async"),
-    Feed  = require("feedparser"),
-
-    requests = {
-        "http:"  : require("http"),
-        "https:" : require("https")
-    };
+var async  = require("async"),
+    needle = require("needle"),
+    Feed   = require("feedparser"),
+    
+    _utils = require("../lib/utils");
     
 module.exports = function(config, done) {
     config.entries = [];
     
     async.each(
         config.feeds,
-        function(item, cb) {
-            var url    = item.url || item,
-                parsed = parse(url),
-                feed   = new Feed();
+        function(item, next) {
+            var feed  = new Feed(),
+                url;
+            
+            url = _utils.addAuth(item.url || item, item);
             
             feed.on("error", function(error) {
                 config.log("error", error + " (" + url + ")");
             });
             
-            feed.on("end", cb);
+            feed.on("end", next);
             
             feed.on("readable", function() {
                 var entry;
@@ -39,16 +37,7 @@ module.exports = function(config, done) {
             
             config.log("info", "Requesting %s", url);
             
-            requests[parsed.protocol].get(
-                url,
-                function(res) {
-                    res.setEncoding("utf8");
-                    
-                    config.log("verbose", "Parsing %s", url);
-                    
-                    res.pipe(feed);
-                }
-            );
+            needle.get(url).pipe(feed);
         },
         done
     );
