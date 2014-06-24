@@ -1,6 +1,6 @@
 {
     "requireCurlyBraces": [
-        "if", "else", "for", "while", "do", "try", "catch", "case", "default"
+        "if", "else", "for", "while", "do", "try", "catch", "switch", "default"
     ],
 
     "requireSpaceAfterKeywords": [
