@@ -10,27 +10,25 @@ var equal   = require("assert").equal,
 describe.only("Comparisons lib", function() {
     it("should sort items based on quality", function() {
         equal(quality({}, {}), 0);
-        equal(quality({ quality : true }, {}), -1);
-        equal(quality({}, { quality : true }), 1);
 
-        equal(quality({ quality : "480p" }, { quality : true }), -1);
+        equal(quality({ quality : "480p" }, {}), -1);
         equal(quality({ quality : "720p" }, { quality : "480p" }), -1);
         equal(quality({ quality : "1080i" }, { quality : "720p" }), -1);
         equal(quality({ quality : "1080p" }, { quality : "1080i" }), -1);
         equal(quality({ quality : "1080i" }, { quality : "720p" }), -1);
-        equal(quality({ quality : "1080p" }, { quality : "480p" }), -3);
+        equal(quality({ quality : "1080p" }, { quality : "480p" }), -1);
 
-        equal(quality({ quality : "480p"}, { quality : "480p"}), 0);
-        equal(quality({ quality : "720p"}, { quality : "720p"}), 0);
-        equal(quality({ quality : "1080i"}, { quality : "1080i"}), 0);
-        equal(quality({ quality : "1080p"}, { quality : "1080p"}), 0);
+        equal(quality({ quality : "480p" }, { quality : "480p" }), 0);
+        equal(quality({ quality : "720p" }, { quality : "720p" }), 0);
+        equal(quality({ quality : "1080i" }, { quality : "1080i" }), 0);
+        equal(quality({ quality : "1080p" }, { quality : "1080p" }), 0);
 
-        equal(quality({ quality : true }, { quality : "480p" }), 1);
+        equal(quality({}, { quality : "480p" }), 1);
         equal(quality({ quality : "480p" }, { quality : "720p" }), 1);
         equal(quality({ quality : "720p" }, { quality : "1080i" }), 1);
         equal(quality({ quality : "1080i" }, { quality : "1080p" }), 1);
         equal(quality({ quality : "720p" }, { quality : "1080i" }), 1);
-        equal(quality({ quality : "480p" }, { quality : "1080p" }), 3);
+        equal(quality({ quality : "480p" }, { quality : "1080p" }), 1);
     });
 
     it("should sort items based on propers", function() {
@@ -47,5 +45,14 @@ describe.only("Comparisons lib", function() {
         equal(season({}, { season : 1 }), 1);
         equal(season({ season : 2 }, { season : 1 }), -1);
         equal(season({ season : 1 }, { season : 4 }), 1);
+    });
+
+    it("should sort items based on episode", function() {
+        equal(episode({}, {}), 0);
+        equal(episode({ episode : 1 }, { episode : 1 }), 0);
+        equal(episode({ episode : 1 }, {}), -1);
+        equal(episode({}, { episode : 1 }), 1);
+        equal(episode({ episode : 2 }, { episode : 1 }), -1);
+        equal(episode({ episode : 1 }, { episode : 4 }), 1);
     });
 });
